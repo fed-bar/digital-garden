@@ -3,11 +3,17 @@
 **************************/
 
 @font-face {
-  font-family: "Comic Relief";
+  font-family: ui-sans-serif, sans-serif;
   src: url(../fonts/ComicRelief-Regular.woff2);
   font-weight: 400;
   font-style: normal;
+  font-family: georgia, serif;
 }
+
+html { --factor: 2; }
+h1 { font-size: calc( pow( var(--factor), 3 ) * 1rem); }
+h2 { font-size: calc( pow( var(--factor), 2 ) * 1rem); }
+h3 { font-size: calc( pow( var(--factor), 1 ) * 1rem); }
 
 /**************************
 * MARK: Custom properties
@@ -15,7 +21,22 @@
 
 html {
   color-scheme: light dark;
+
+  --step-0: clamp(1rem, 0.9167rem + 0.3704vw, 1.25rem);
+  --step-1: clamp(1.2rem, 0.975rem + 1vw, 1.875rem);
+  --step-2: clamp(1.44rem, 0.9825rem + 2.0333vw, 2.8125rem);
+  --step-3: clamp(1.728rem, 0.8978rem + 3.69vw, 4.2188rem);
+  --step-4: clamp(2.0736rem, 0.6554rem + 6.303vw, 6.3281rem);
+  --step-5: clamp(2.4883rem, 0.1537rem + 10.3761vw, 9.4922rem);
 }
+
+h1 { font-size: var(--step-4); }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
+
+
+
 
 /**************************
 * MARK: Algemene Styling
@@ -28,11 +49,39 @@ html {
 }
 
 img {
+  display: block;
+  padding-top:15px;
   max-width: 100%;
+  height: auto;
 }
 
+img, svg, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+
 body {
-  font-family: "Comic Relief", system-ui;
+    display: grid;
+    grid-template-areas:
+    ". header"
+    ". main"
+    ". footer";
+    font-family: ui-sans-serif, sans-serif;
+    line-height: 1.5em;
+    background-color: rgb(242, 173, 207);
+}
+
+h2 {
+  line-height: 1em;
+}
+
+article {
+  max-width: 30em;
+  background-color: hotpink;
+  padding: 15px;
 }
 
 /**************************
@@ -40,6 +89,7 @@ body {
 **************************/
 
 header {
+  grid-area: header;
 }
 
 /**************************
@@ -47,6 +97,7 @@ header {
 **************************/
 
 footer {
+  grid-area: footer;
 }
 
 /**************************
@@ -54,6 +105,9 @@ footer {
 **************************/
 
 main {
+  grid-area: main;
+  display: flex;
+  gap: 15px;
 }
 
 /**************************
